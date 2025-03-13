@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Holi!</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #ffeb3b;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .hidden {
+            display: none;
+        }
+        .greeting {
+            font-size: 32px;
+            font-weight: bold;
+            color: #e91e63;
+            margin-top: 20px;
+        }
+        .color-splash {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255,0,0,0.7), rgba(255,255,0,0.1));
+            border-radius: 50%;
+            opacity: 0;
+            animation: splash 1s ease-out forwards;
+        }
+        @keyframes splash {
+            from { transform: scale(0); opacity: 1; }
+            to { transform: scale(5); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Happy Holi! 🎉</h1>
+        <input type="text" id="name" placeholder="Enter Your Name">
+        <button onclick="showGreeting()">Celebrate</button>
+        <p id="greeting" class="greeting hidden"></p>
+    </div>
+    <script>
+        function showGreeting() {
+            let name = document.getElementById("name").value;
+            if (name) {
+                let greeting = document.getElementById("greeting");
+                greeting.innerHTML = `Happy Holi, ${name}! 🎊🌸🎶`;
+                greeting.classList.remove("hidden");
+                createColorSplash();
+            }
+        }
+
+        function createColorSplash() {
+            let splash = document.createElement("div");
+            splash.className = "color-splash";
+            splash.style.top = `${Math.random() * window.innerHeight}px`;
+            splash.style.left = `${Math.random() * window.innerWidth}px`;
+            document.body.appendChild(splash);
+            setTimeout(() => splash.remove(), 1000);
+        }
+    </script>
+</body>
+</html>
