@@ -42,8 +42,8 @@
 </head>
 <body>
     <div class="container">
-        <h1>🎨 Happy Holi! 🎉</h1>
-        <input type="text" id="name" placeholder="Enter Your Name">
+        <input type="text" id="name" placeholder="Enter First Name" required>
+        <input type="text" placeholder="Enter Last Name">
         <button onclick="showGreeting()">Celebrate</button>
         <p id="greeting" class="greeting hidden"></p>
         <p id="message" class="greeting hidden"></p>
@@ -60,11 +60,23 @@
         let displayName = "";
 
         function showGreeting() {
-            let name = document.getElementById("name").value.trim();
+            let name = document.getElementById("name").value.trim().toLowerCase();
+            let nicknames = {
+                "namrata": "Namu",
+                "swastha": "Sister",
+                "asmita": "Soltini",
+                "ganga": "Motts",
+                "amit": "Amitwaa",
+                "sunil": "Chodu",
+                "saurav": "Nepal ji",
+                "amish": "Dangal ji"
+            };
+            
+            displayName = nicknames[name] || name.charAt(0).toUpperCase() + name.slice(1);
+            
             if (name) {
-                displayName = (name.toLowerCase() === "namrata") ? "Namu" : name;
                 let greeting = document.getElementById("greeting");
-                greeting.innerHTML = `Happy Holi 2081, ${displayName}! 🎊🌸🎶`;
+                greeting.innerHTML = `Happy Holi 2081 , ${displayName}! 🎊🌸🎶`;
                 greeting.classList.remove("hidden");
                 document.getElementById("gift-container").style.display = "block";
             }
@@ -77,7 +89,7 @@
             } else if (giftType === "sweet") {
                 message.innerHTML = `I like you, ${displayName}! 😊`;
             } else if (giftType === "color") {
-                message.innerHTML = `Will you marry me, ${displayName}? 💍`;
+                message.innerHTML = `Lets go for beer party, ${displayName}? 💍`;
             }
             message.classList.remove("hidden");
             setTimeout(() => window.close(), 5000); // Close the browser after 5 seconds
